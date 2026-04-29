@@ -430,6 +430,18 @@
             box-shadow: 0 10px 20px rgba(255, 133, 161, 0.4);
         }
 
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            .outfit-btn {
+                width: 76px;
+                flex-shrink: 0;
+            }
+            .outfit-btn img {
+                width: 72px;
+                height: 72px;
+            }
+        }
+
         .gallery-grid {
             display: flex;
             gap: 16px;
@@ -654,48 +666,50 @@
         <section id="sec-1" class="section bg-white" data-index="1">
             <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8f6c-7d3a-4768-6b3d04909db9.png" alt="底纹" class="watermark-img">
             <div class="max-w-6xl mx-auto w-full reveal relative z-10">
-                <div class="flex flex-col md:flex-row items-center gap-14">
-                    <div class="md:w-1/2 group cursor-zoom-in text-center">
+                <div class="flex flex-col md:flex-row items-start gap-14">
+                    <div class="md:w-1/2 w-full order-1 group cursor-zoom-in text-center">
                         <div class="relative inline-block w-full max-w-sm aspect-[3/4]">
                             <div class="absolute inset-0 bg-gradient-to-tr from-pink-100 to-blue-50 rounded-3xl transform rotate-3 scale-105 -z-10 transition-transform group-hover:rotate-6"></div>
                             <img id="main-char-img" src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg" class="w-full h-full object-cover mx-auto rounded-3xl shadow-xl transition-all duration-500 group-hover:-translate-y-2" alt="立绘展示">
                             <div id="outfit-label" class="absolute top-4 left-4 bg-gray-900/90 text-white backdrop-blur px-4 py-1.5 rounded-br-2xl rounded-tl-2xl font-bold text-xs shadow-md tracking-wider">树莓酱 2026</div>
-                            <div id="artist-label" class="absolute bottom-4 right-4 bg-pink-500/90 text-white backdrop-blur px-4 py-1.5 rounded-tl-2xl rounded-br-2xl font-bold text-xs shadow-md tracking-wider">画师：树莓社</div>
+                            <div id="artist-label" class="absolute bottom-4 right-4 bg-pink-500/90 text-white backdrop-blur px-4 py-1.5 rounded-tl-2xl rounded-br-2xl font-bold text-xs shadow-md tracking-wider">画师：Mosir</div>
                         </div>
                     </div>
                     
-                    <div class="md:w-1/2 space-y-8">
-                        <div class="border-l-8 border-pink-400 pl-6 py-1">
-                            <h3 class="text-4xl font-bold text-gray-800 font-game">关注树莓酱谢谢喵</h3>
-                            <p class="text-pink-400 font-bold mt-2 tracking-wide">热心摄影师 & 首席氛围组</p>
+                    <div class="md:w-1/2 w-full flex flex-col gap-8 order-2">
+                        <div class="order-2 md:order-1 space-y-8">
+                            <div class="border-l-8 border-pink-400 pl-6 py-1">
+                                <h3 class="text-4xl font-bold text-gray-800 font-game">关注树莓酱谢谢喵</h3>
+                                <p class="text-pink-400 font-bold mt-2 tracking-wide">热心摄影师 & 首席氛围组</p>
+                            </div>
+                            
+                            <p class="text-gray-600 leading-relaxed text-base font-light bg-pink-50/50 p-5 rounded-2xl border border-pink-100">
+                                当学长学姐处理社团工作到深夜，精神疲惫时，她会突然出现，递上一杯热奶茶。她会为每一个微小的进步鼓掌，为每一位新成员的加入准备手绘的欢迎卡。
+                            </p>
                         </div>
-                        
-                        <p class="text-gray-600 leading-relaxed text-base font-light bg-pink-50/50 p-5 rounded-2xl border border-pink-100">
-                            当学长学姐处理社团工作到深夜，精神疲惫时，她会突然出现，递上一杯热奶茶。她会为每一个微小的进步鼓掌，为每一位新成员的加入准备手绘的欢迎卡。
-                        </p>
 
-                        <div class="space-y-3">
+                        <div class="order-1 md:order-2 space-y-3">
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Select Outfit</p>
-                            <div class="flex gap-5 overflow-x-auto pb-4 scrollbar-hide px-2 pt-4">
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg', '树莓酱 2026', 'Mosir')" class="outfit-btn active">
+                            <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-hide px-0 pt-4">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg', '树莓酱 2026', 'Mosir')" class="outfit-btn active flex-shrink-0">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2026 新款</p>
-                                    <p class="text-[8px] text-center text-gray-400">艺术家：Mosir</p>
+                                    <p class="text-[8px] text-center text-gray-400">画师：Mosir</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg', '树莓酱 2025', '不可食用蛋挞')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg', '树莓酱 2025', '不可食用蛋挞')" class="outfit-btn flex-shrink-0">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2025 经典</p>
-                                    <p class="text-[8px] text-center text-gray-400">艺术家：不可食用蛋挞</p>
+                                    <p class="text-[8px] text-center text-gray-400">画师：不可食用蛋挞</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg', '树莓酱 2025冬季限定', '不可食用蛋挞')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg', '树莓酱 2025冬季限定', '不可食用蛋挞')" class="outfit-btn flex-shrink-0">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">冬季限定</p>
-                                    <p class="text-[8px] text-center text-gray-400">艺术家：不可食用蛋挞</p>
+                                    <p class="text-[8px] text-center text-gray-400">画师：不可食用蛋挞</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg', '树莓酱 2021', '夏度&陆未一')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg', '树莓酱 2021', '夏度&陆未一')" class="outfit-btn flex-shrink-0">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2021 怀旧</p>
-                                    <p class="text-[8px] text-center text-gray-400">艺术家：夏度&陆未一</p>
+                                    <p class="text-[8px] text-center text-gray-400">画师：夏度&陆未一</p>
                                 </div>
                             </div>
                         </div>
