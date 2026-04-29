@@ -1064,46 +1064,17 @@
 
         const galleryScroll = document.getElementById('gallery-scroll');
 
-        // 优化触摸事件处理，避免滚动闪回
+        // 画廊滚动处理 - 保留原生触摸滚动和 scroll-snap
         if (galleryScroll) {
-            // 移除可能存在的旧事件监听器
-            const newGalleryScroll = galleryScroll.cloneNode(true);
-            galleryScroll.parentNode.replaceChild(newGalleryScroll, galleryScroll);
-            const optimizedGalleryScroll = newGalleryScroll;
-
-            // 触摸事件处理
-            optimizedGalleryScroll.addEventListener('touchstart', (e) => {
-                // 记录初始触摸位置
-                optimizedGalleryScroll.dataset.touchStartX = e.touches[0].clientX;
-                optimizedGalleryScroll.dataset.touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            optimizedGalleryScroll.addEventListener('touchmove', (e) => {
-                const touchStartX = parseFloat(optimizedGalleryScroll.dataset.touchStartX);
-                const touchStartY = parseFloat(optimizedGalleryScroll.dataset.touchStartY);
-                const currentX = e.touches[0].clientX;
-                const currentY = e.touches[0].clientY;
-                
-                const deltaX = currentX - touchStartX;
-                const deltaY = currentY - touchStartY;
-
-                // 只有当水平滑动大于垂直滑动时，才处理画廊滚动
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    e.preventDefault();
-                    // 直接设置滚动位置，避免累加导致的不稳定
-                    optimizedGalleryScroll.scrollLeft -= deltaX * 0.8;
-                }
-            }, { passive: false });
-
-            // 鼠标滚轮事件处理 - 垂直滚轮转横向滚动
-            optimizedGalleryScroll.addEventListener('wheel', (e) => {
+            // 只处理鼠标滚轮事件 - 垂直滚轮转横向滚动
+            galleryScroll.addEventListener('wheel', (e) => {
                 if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-                const maxScroll = optimizedGalleryScroll.scrollWidth - optimizedGalleryScroll.clientWidth;
-                const isAtStart = optimizedGalleryScroll.scrollLeft <= 1;
-                const isAtEnd = optimizedGalleryScroll.scrollLeft >= maxScroll - 1;
+                const maxScroll = galleryScroll.scrollWidth - galleryScroll.clientWidth;
+                const isAtStart = galleryScroll.scrollLeft <= 1;
+                const isAtEnd = galleryScroll.scrollLeft >= maxScroll - 1;
                 if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
                     e.preventDefault();
-                    optimizedGalleryScroll.scrollLeft += e.deltaY * 1.5;
+                    galleryScroll.scrollLeft += e.deltaY * 1.5;
                 }
             }, { passive: false });
         }
