@@ -660,6 +660,7 @@
                             <div class="absolute inset-0 bg-gradient-to-tr from-pink-100 to-blue-50 rounded-3xl transform rotate-3 scale-105 -z-10 transition-transform group-hover:rotate-6"></div>
                             <img id="main-char-img" src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg" class="w-full h-full object-cover mx-auto rounded-3xl shadow-xl transition-all duration-500 group-hover:-translate-y-2" alt="立绘展示">
                             <div id="outfit-label" class="absolute top-4 left-4 bg-gray-900/90 text-white backdrop-blur px-4 py-1.5 rounded-br-2xl rounded-tl-2xl font-bold text-xs shadow-md tracking-wider">树莓酱 2026</div>
+                            <div id="artist-label" class="absolute bottom-4 right-4 bg-pink-500/90 text-white backdrop-blur px-4 py-1.5 rounded-tl-2xl rounded-br-2xl font-bold text-xs shadow-md tracking-wider">画师：树莓社</div>
                         </div>
                     </div>
                     
@@ -676,21 +677,25 @@
                         <div class="space-y-3">
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Select Outfit</p>
                             <div class="flex gap-5 overflow-x-auto pb-4 scrollbar-hide px-2 pt-4">
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg', '树莓酱 2026')" class="outfit-btn active">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg', '树莓酱 2026', 'Mosir')" class="outfit-btn active">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-8b72-7966-4cf5-d111d9bfb453.jpeg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2026 新款</p>
+                                    <p class="text-[8px] text-center text-gray-400">艺术家：Mosir</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg', '树莓酱 2025')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg', '树莓酱 2025', '不可食用蛋挞')" class="outfit-btn">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-508d-7e27-4594-6b781294b9b8.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2025 经典</p>
+                                    <p class="text-[8px] text-center text-gray-400">艺术家：不可食用蛋挞</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg', '树莓酱 2025冬季限定')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg', '树莓酱 2025冬季限定', '不可食用蛋挞')" class="outfit-btn">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5344-7bba-44c0-ba78c121c790.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">冬季限定</p>
+                                    <p class="text-[8px] text-center text-gray-400">艺术家：不可食用蛋挞</p>
                                 </div>
-                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg', '树莓酱 2021')" class="outfit-btn">
+                                <div onclick="changeOutfit(this, 'https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg', '树莓酱 2021', '夏度&陆未一')" class="outfit-btn">
                                     <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-5346-75e4-4f05-4d2a4ddbb739.jpg">
                                     <p class="text-[10px] text-center mt-2 font-bold text-gray-500">2021 怀旧</p>
+                                    <p class="text-[8px] text-center text-gray-400">艺术家：夏度&陆未一</p>
                                 </div>
                             </div>
                         </div>
@@ -1026,9 +1031,10 @@
             sideNav.appendChild(item);
         });
 
-        function changeOutfit(element, url, labelText) {
+        function changeOutfit(element, url, labelText, artistText) {
             const mainImg = document.getElementById('main-char-img');
             const label = document.getElementById('outfit-label');
+            const artistLabel = document.getElementById('artist-label');
             document.querySelectorAll('.outfit-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
             
@@ -1038,6 +1044,7 @@
             setTimeout(() => {
                 mainImg.src = url;
                 label.innerText = labelText;
+                artistLabel.innerText = '画师：' + artistText;
                 mainImg.style.opacity = 1;
                 mainImg.style.transform = "scale(1)";
             }, 300);
