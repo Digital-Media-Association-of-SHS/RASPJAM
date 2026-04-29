@@ -2,7 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="description" content="树莓酱 - 苏州中学树莓社首席氛围组，热心摄影师，期待看到你眼中的树莓酱！">
     <meta name="keywords" content="苏州中学, 树莓社, 树莓酱, 校园社团, 摄影企划">
     <meta name="author" content="苏州中学树莓社">
@@ -1060,8 +1063,35 @@
                 setTimeout(() => {
                     splashScreen.style.display = 'none';
                     document.body.style.overflow = 'auto';
+                    
+                    // 自动隐藏手机端网址栏
+                    hideAddressBar();
                 }, 800);
             }, 2800);
+        });
+
+        // 自动隐藏手机端网址栏
+        function hideAddressBar() {
+            if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                setTimeout(() => {
+                    window.scrollTo(0, 1);
+                }, 100);
+                
+                // 如果滚动后位置仍然是 0，再尝试一次
+                if (window.pageYOffset === 0) {
+                    setTimeout(() => {
+                        window.scrollTo(0, 1);
+                    }, 500);
+                }
+            }
+        }
+
+        // 在页面加载完成和窗口调整大小时也尝试隐藏
+        window.addEventListener('load', () => {
+            setTimeout(hideAddressBar, 500);
+        });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(hideAddressBar, 300);
         });
 
         const container = document.getElementById('scroll-container');
