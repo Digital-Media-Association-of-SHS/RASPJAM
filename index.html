@@ -675,6 +675,8 @@
         <div id="splash-logo" class="pulse">
             <img src="https://szzxshumei.com/wp-content/uploads/2025/08/00000ff9-3e62-7f77-4c4a-43a7698a57d4.jpg" alt="树莓社Logo" style="width: 75%; height: 75%; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <img src="https://szzxshumei.com/wp-content/uploads/2026/04/00001029-7ab0-76d0-4c4d-072b9eb66ee8.png" alt="传媒Logo" style="width: 90%; height: 90%; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <img src="https://szzxshumei.com/wp-content/uploads/2025/08/00000ff9-3e62-7f77-4c4a-43a7698a57d4.jpg" alt="树莓社Logo" style="width: 75%; height: 75%; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <img src="https://szzxshumei.com/wp-content/uploads/2026/04/0000102a-b40f-7296-4df6-5078ca0cec41.png" alt="树莓酱Logo" style="width: 95%; height: 95%; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div class="ripple"></div>
             <div class="ripple"></div>
             <div class="ripple"></div>
@@ -1029,7 +1031,7 @@
                 requestAnimationFrame(animateProgress);
             }, 100);
             
-            // 0.8 秒后开始交替变换，共变换 3 次，每次间隔 0.5 秒
+            // 1.2 秒后开始四张 logo 循环一遍，最后停在树莓酱角色 logo
             setTimeout(() => {
                 switchLogo();
                 
@@ -1037,12 +1039,12 @@
                     switchLogo();
                     
                     setTimeout(() => {
-                        switchLogo();
-                    }, 500);
-                }, 500);
-            }, 800);
+                        switchLogo(); // 最后切换到树莓酱角色 logo
+                    }, 600);
+                }, 600);
+            }, 1200);
             
-            // 2.8 秒后开始淡出（logo 交替完成后 1 秒）
+            // 3.5 秒后开始淡出（logo 交替完成后，让最后一个 logo 显示更久）
             setTimeout(() => {
                 // 显示主内容
                 mainContent.style.display = 'block';
@@ -1072,7 +1074,7 @@
                     // 自动隐藏手机端网址栏
                     hideAddressBar();
                 }, 800);
-            }, 2800);
+            }, 3500);
         });
 
         // 自动隐藏手机端网址栏
