@@ -717,7 +717,7 @@
                     <svg class="w-7 h-7 mx-auto text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </div>
             </div>
-            <img src="https://szzxshumei.com/wp-content/uploads/2026/05/0000102b-0c44-705d-49f3-c2a2d40b0822.png" class="absolute left-0 bottom-16 md:bottom-0 w-64 md:w-80 opacity-90 hover:opacity-100 transition-opacity duration-300 z-20" alt="树莓酱表情包" loading="eager">
+            <img id="left-decor-img" src="https://szzxshumei.com/wp-content/uploads/2026/05/0000102b-0c44-705d-49f3-c2a2d40b0822.png" class="absolute left-0 bottom-16 md:bottom-0 w-64 md:w-80 opacity-0 hover:opacity-100 transition-opacity duration-300 z-20 transform -translate-x-full" alt="树莓酱表情包" loading="eager">
         </section>
 
         <section id="sec-1" class="section bg-white" data-index="1">
@@ -1069,6 +1069,16 @@
                         mainImage.style.transform = 'translateY(0)';
                         mainImage.style.opacity = '1';
                     }, 300);
+                }
+                
+                // 左下角装饰图片滑入动画
+                const leftDecorImg = document.getElementById('left-decor-img');
+                if (leftDecorImg) {
+                    leftDecorImg.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s';
+                    setTimeout(() => {
+                        leftDecorImg.style.opacity = '0.9';
+                        leftDecorImg.style.transform = 'translateX(0)';
+                    }, 600);
                 }
                 
                 // 完全隐藏启动屏幕
