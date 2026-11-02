@@ -236,7 +236,7 @@
         #scroll-container {
             height: 100dvh;
             overflow-y: auto;
-            scroll-snap-type: y mandatory;
+            scroll-snap-type: y proximity;
             scroll-behavior: smooth;
         }
         .section {
@@ -1190,22 +1190,39 @@
             }, 300);
         }
 
-        // 阈值自适应：普通 section 露出 35% 激活；画廊等超高 section（瀑布流撑高后远超一屏）
-        // 按"露出约半屏"折算比例，避免 threshold 0.35 永远无法达到导致内容透明
-        const viewportH = () => document.getElementById('scroll-container')?.clientHeight || window.innerHeight;
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                const sec = entry.target;
-                const need = Math.min(0.35, (viewportH() * 0.5) / Math.max(sec.offsetHeight, viewportH()));
-                if (entry.intersectionRatio + 0.001 < need) return;
-                const idx = sec.dataset.index;
-                document.querySelectorAll('.nav-item').forEach((item, i) => item.classList.toggle('active', i == idx));
-                entry.target.querySelector('.reveal')?.classList.add('active');
+        // 导航高亮 + 入场动画：改为 scroll 驱动，以视口中心线穿过的 section 作为当前项。
+        // （原 IntersectionObserver 在快速 smooth scroll 时会丢帧/状态合并，导致点击
+        //   "关于我们"后高亮停留在中途的"画廊"等 section；scroll 实时重算不受此影响。）
+        const navItems = document.querySelectorAll('.nav-item');
+        function updateActiveSection() {
+            const cRect = container.getBoundingClientRect();
+            const midY = cRect.top + container.clientHeight / 2;
+            let activeIdx = 0;
+            sections.forEach((sec, i) => {
+                const r = sec.getBoundingClientRect();
+                if (r.top <= midY) activeIdx = i;              // 中心线已越过该 section 顶部
+                if (r.top < cRect.bottom && r.bottom > cRect.top) {  // 与视口重叠即触发入场（兼容超高画廊）
+                    sec.querySelector('.reveal')?.classList.add('active');
+                }
             });
-        }, { threshold: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.35] });
-
-        sections.forEach(sec => observer.observe(sec));
+            navItems.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
+        }
+        let navTick = false;
+        container.addEventListener('scroll', () => {
+            if (navTick) return;
+            navTick = true;
+            requestAnimationFrame(() => { navTick = false; updateActiveSection(); });
+        }, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+        // 首次启动时 #main-content 为 display:none（splash 阶段），所有 section 位置为 0，
+        // 直接判定 reveal 会失效导致首页内容透明；需等主内容实际显示后再做首次判定
+        (function initActive() {
+            if (getComputedStyle(document.getElementById('main-content')).display !== 'none') {
+                updateActiveSection();
+            } else {
+                setTimeout(initActive, 100);
+            }
+        })();
 
         // 瀑布流布局：滚动容器内 CSS columns 会退化为单列，改用 flex 多列 + JS 分配
         (function () {
