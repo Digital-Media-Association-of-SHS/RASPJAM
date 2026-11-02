@@ -494,37 +494,26 @@
             }
         }
 
+        /* 瀑布流：flex 多列（滚动容器内 CSS columns 会退化为单列，列由 JS 构建） */
         .gallery-grid {
             display: flex;
             gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding: 30px 10px 50px;
-            margin: -30px -10px -50px;
+            align-items: flex-start;
+            padding: 10px 0;
         }
-        .gallery-grid::-webkit-scrollbar {
-            height: 0;
-        }
-        .gallery-item {
-            flex-shrink: 0;
-            width: 280px;
+        .masonry-col {
+            flex: 1 1 0;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            scroll-snap-align: start;
+            gap: 16px;
+        }
+        .gallery-item {
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 0 8px;
-        }
-        .gallery-item:first-child {
-            margin-left: 0;
-        }
-        .gallery-item:last-child {
-            margin-right: 0;
         }
         .gallery-item:hover {
-            transform: translateY(-8px) scale(1.03);
+            transform: translateY(-8px) scale(1.02);
             z-index: 10;
         }
         .gallery-item::before {
@@ -557,8 +546,7 @@
         .gallery-item:hover::after {
             opacity: 1;
         }
-        .gallery-item img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 1.5rem 1.5rem 0 0; }
-        .gallery-item img.contain { object-fit: contain; background: transparent; }
+        .gallery-item img { width: 100%; height: auto; display: block; border-radius: 1.5rem 1.5rem 0 0; }
         .gallery-item-info {
             background: white;
             padding: 12px 16px;
@@ -577,9 +565,6 @@
             align-items: center;
             justify-content: center;
             border-radius: 1.5rem 1.5rem 0 0;
-        }
-        .gallery-wrapper {
-            overflow: visible;
         }
 
         /* 游戏风立体按钮 */
@@ -831,95 +816,95 @@
                 <div class="gallery-wrapper">
                     <div class="gallery-grid" id="gallery-scroll">
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-halloween-yangcongquan.jpg" class="w-full h-full object-cover">
+                        <img src="images/raspjam-2026-halloween-yangcongquan.jpg">
                         <div class="gallery-item-info"><div class="author">万圣节树莓启动！</div><div class="date">艺术家：洋葱圈</div><div class="date">2026.10.31</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-halloween-danta.png" class="w-full h-full object-cover contain">
+                        <img src="images/raspjam-2026-halloween-danta.png">
                         <div class="gallery-item-info"><div class="author">2026万圣节树莓酱</div><div class="date">艺术家：不可食用蛋挞</div><div class="date">2026.10</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-halloween-mancheng.jpg" class="w-full h-full object-cover">
+                        <img src="images/raspjam-2026-halloween-mancheng.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱万圣节</div><div class="date">艺术家：满城</div><div class="date">2026.10</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-birthday-xizhiyu.jpg" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-2026-birthday-xizhiyu.jpg">
                         <div class="gallery-item-info"><div class="author">2026树莓生贺</div><div class="date">艺术家：细织雨</div><div class="date">2026.09.18</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-midautumn-yun.jpg" class="w-full h-full object-cover">
+                        <img src="images/raspjam-2026-midautumn-yun.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱2026中秋节</div><div class="date">艺术家：云</div><div class="date">2026.9</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-birthday-morii.jpg" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-2026-birthday-morii.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 生日贺图</div><div class="date">艺术家：Morii.</div><div class="date">2026.09.17</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-birthday-yun.jpg" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-2026-birthday-yun.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 生日贺图</div><div class="date">艺术家：云</div><div class="date">2026.09.17</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-birthday-mosir.jpg" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-2026-birthday-mosir.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 生日贺图</div><div class="date">艺术家：Mosir</div><div class="date">2026.09.17</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-2026-birthday-mancheng.jpg" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-2026-birthday-mancheng.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 生日贺图</div><div class="date">艺术家：满城</div><div class="date">2026.09.17</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/raspjam-pimon_Scale_473x512.webp" class="w-full h-full object-cover contain" loading="lazy">
+                        <img src="images/raspjam-pimon_Scale_473x512.webp">
                         <div class="gallery-item-info"><div class="author">应急食品·树莓</div><div class="date">艺术家：Cu(OH)₂</div><div class="date">2026.05.23</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/0000102b-0c44-705d-49f3-c2a2d40b0822.png" class="w-full h-full object-cover" loading="lazy">
+                        <img src="images/0000102b-0c44-705d-49f3-c2a2d40b0822.png">
                         <div class="gallery-item-info"><div class="author">抢镜莓表情包</div><div class="date">艺术家：OvO</div><div class="date">2026.05</div></div>
                     </div>
                         <div class="gallery-item glass-card group">
-                        <img src="images/00001029-8ba4-721a-4168-f5f6001379c1.jpeg" class="w-full h-full object-cover">
+                        <img src="images/00001029-8ba4-721a-4168-f5f6001379c1.jpeg">
                         <div class="gallery-item-info"><div class="author">树莓酱马年迎新海报</div><div class="date">艺术家：晒太阳</div><div class="date">2026.02</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-8b97-7324-4d6a-aad849d2fa50.jpeg" class="w-full h-full object-cover">
+                        <img src="images/00001029-8b97-7324-4d6a-aad849d2fa50.jpeg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 红包封面</div><div class="date">艺术家：Morii. </div><div class="date">2026.02</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-8b6d-7639-4f86-3b6adcc711d2.jpeg" class="w-full h-full object-cover">
+                        <img src="images/00001029-8b6d-7639-4f86-3b6adcc711d2.jpeg">
                         <div class="gallery-item-info"><div class="author">树莓酱 2026 红包封面</div><div class="date">艺术家：满城</div><div class="date">2026.02</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-54fd-7505-4609-83ebf25a3107.jpeg" class="w-full h-full object-cover contain">
+                        <img src="images/00001029-54fd-7505-4609-83ebf25a3107.jpeg">
                         <div class="gallery-item-info"><div class="author">树莓酱立绘</div><div class="date">艺术家：AIGC</div><div class="date">2026.04.01</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/0000102a-88d4-7984-4d6d-63e98b485720.jpg" class="w-full h-full object-cover">
+                        <img src="images/0000102a-88d4-7984-4d6d-63e98b485720.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱插画</div><div class="date">艺术家：Mosir</div><div class="date">2025.10.18</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-8fc5-7469-47ed-67d75cf265eb.gif" class="w-full h-full object-cover contain">
+                        <img src="images/00001029-8fc5-7469-47ed-67d75cf265eb.gif">
                         <div class="gallery-item-info"><div class="author">啃树莓</div><div class="date">艺术家：Mosir</div><div class="date">2025.10.23</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-54f9-70ae-43a2-3ed7e51c82c2.jpeg" class="w-full h-full object-cover">
+                        <img src="images/00001029-54f9-70ae-43a2-3ed7e51c82c2.jpeg">
                         <div class="gallery-item-info"><div class="author">树莓酱插画</div><div class="date">艺术家：Mosir</div><div class="date">2026.03</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-5344-7bba-44c0-ba78c121c790.jpg" class="w-full h-full object-cover">
+                        <img src="images/00001029-5344-7bba-44c0-ba78c121c790.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱·冬装</div><div class="date">艺术家：不可食用蛋挞</div><div class="date">2025.02</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-8f6c-79de-4311-dd3a62e814de.gif" class="w-full h-full object-cover contain">
+                        <img src="images/00001029-8f6c-79de-4311-dd3a62e814de.gif">
                         <div class="gallery-item-info"><div class="author">树莓酱 2021 动态版</div><div class="date">动效制作：CirleCrop、御坂 11605</div><div class="date">2021</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/00001029-9102-728d-4b51-539d81ce8a31.jpg" class="w-full h-full object-cover">
+                        <img src="images/00001029-9102-728d-4b51-539d81ce8a31.jpg">
                         <div class="gallery-item-info"><div class="author">树莓酱表情包第一辑</div><div class="date">艺术家：YANGK</div><div class="date">2024.04</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/0000102a-b0ab-7d3e-4875-cb12e95d7613.jpg" class="w-full h-full object-cover">
+                        <img src="images/0000102a-b0ab-7d3e-4875-cb12e95d7613.jpg">
                         <div class="gallery-item-info"><div class="author">小马！！</div><div class="date">艺术家：满城</div><div class="date">2025.12</div></div>
                     </div>
                     <div class="gallery-item glass-card group">
-                        <img src="images/0000102a-b0cb-78db-42d9-3ad2b2dfa25e.jpg" class="w-full h-full object-cover" loading="lazy">
+                        <img src="images/0000102a-b0cb-78db-42d9-3ad2b2dfa25e.jpg">
                         <div class="gallery-item-info"><div class="author">表情包</div><div class="date">艺术家：满城</div><div class="date">2025.12</div></div>
                     </div>
                     <div class="gallery-item glass-card overflow-hidden group border-2 border-dashed border-yellow-200 bg-yellow-50/50">
@@ -1205,35 +1190,132 @@
             }, 300);
         }
 
+        // 阈值自适应：普通 section 露出 35% 激活；画廊等超高 section（瀑布流撑高后远超一屏）
+        // 按"露出约半屏"折算比例，避免 threshold 0.35 永远无法达到导致内容透明
+        const viewportH = () => document.getElementById('scroll-container')?.clientHeight || window.innerHeight;
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const idx = entry.target.dataset.index;
-                    document.querySelectorAll('.nav-item').forEach((item, i) => item.classList.toggle('active', i == idx));
-                    entry.target.querySelector('.reveal')?.classList.add('active');
-                }
+                if (!entry.isIntersecting) return;
+                const sec = entry.target;
+                const need = Math.min(0.35, (viewportH() * 0.5) / Math.max(sec.offsetHeight, viewportH()));
+                if (entry.intersectionRatio + 0.001 < need) return;
+                const idx = sec.dataset.index;
+                document.querySelectorAll('.nav-item').forEach((item, i) => item.classList.toggle('active', i == idx));
+                entry.target.querySelector('.reveal')?.classList.add('active');
             });
-        }, { threshold: 0.35 });
+        }, { threshold: [0, 0.02, 0.05, 0.1, 0.15, 0.2, 0.35] });
 
         sections.forEach(sec => observer.observe(sec));
 
-        const galleryScroll = document.getElementById('gallery-scroll');
+        // 瀑布流布局：滚动容器内 CSS columns 会退化为单列，改用 flex 多列 + JS 分配
+        (function () {
+            const grid = document.getElementById('gallery-scroll');
+            if (!grid) return;
+            const section = document.getElementById('sec-3');
+            const scrollRoot = document.getElementById('scroll-container') || null;
+            const mainContent = document.getElementById('main-content');
 
-        // 画廊滚动处理 - 保留原生触摸滚动和 scroll-snap
-        if (galleryScroll) {
-            // 只处理鼠标滚轮事件 - 垂直滚轮转横向滚动
-            galleryScroll.addEventListener('wheel', (e) => {
-                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-                const maxScroll = galleryScroll.scrollWidth - galleryScroll.clientWidth;
-                const isAtStart = galleryScroll.scrollLeft <= 1;
-                const isAtEnd = galleryScroll.scrollLeft >= maxScroll - 1;
-                if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
-                    e.preventDefault();
-                    galleryScroll.scrollLeft += e.deltaY * 1.5;
+            // 首次按 DOM 顺序（时间倒序）给每张卡片编号，重排时保持顺序
+            if (!grid.dataset.ordered) {
+                grid.querySelectorAll('.gallery-item').forEach((el, i) => { el.dataset.order = i; });
+                grid.dataset.ordered = '1';
+            }
+
+            const getItems = () => [...grid.querySelectorAll('.gallery-item')]
+                .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+
+            const colCount = () => {
+                const w = window.innerWidth;
+                return w >= 1024 ? 4 : w >= 640 ? 3 : 2;
+            };
+
+            // 页面启动时 #main-content 为 display:none，需等画廊获得真实宽度后才能布局
+            const isReady = () => grid.getBoundingClientRect().width > 0;
+
+            // 建立列容器，并把卡片轮流放入各列（节点移动不销毁，事件保留）
+            function build() {
+                const cols = colCount();
+                const needRebuild = grid.dataset.cols != String(cols) || !grid.querySelector('.masonry-col');
+                if (!needRebuild) return;
+                grid.dataset.cols = cols;
+
+                const items = getItems();
+                items.forEach(it => it.remove()); // 先摘下卡片（引用仍保留），再清空旧列壳
+                grid.textContent = '';
+
+                const colEls = [];
+                for (let i = 0; i < cols; i++) {
+                    const c = document.createElement('div');
+                    c.className = 'masonry-col';
+                    grid.appendChild(c);
+                    colEls.push(c);
                 }
-            }, { passive: false });
-        }
-        
+                items.forEach((it, i) => colEls[i % cols].appendChild(it));
+            }
+
+            // 贪心平衡：从空列开始，按顺序把每张卡片放入当前最矮的列
+            // （先全部摘下使列高归零，保证最新作品稳定在左上角、结果可复现）
+            function balance() {
+                const colEls = [...grid.querySelectorAll('.masonry-col')];
+                if (!colEls.length) return;
+                const items = getItems();
+                items.forEach(it => it.remove());
+                items.forEach(it => {
+                    let target = colEls[0];
+                    colEls.forEach(c => {
+                        if (c.getBoundingClientRect().height < target.getBoundingClientRect().height) target = c;
+                    });
+                    target.appendChild(it);
+                });
+            }
+
+            let done = false;
+            function layout() {
+                if (!isReady()) return false;
+                build();
+                // 双 rAF：等本轮样式应用、列宽确定后再按真实高度平衡
+                requestAnimationFrame(() => requestAnimationFrame(balance));
+                if (!done) {
+                    done = true;
+                    io.disconnect();
+                    if (mo) mo.disconnect();
+                }
+                return true;
+            }
+
+            // ① 画廊进入滚动容器视口时布局
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) layout(); });
+            }, { root: scrollRoot, threshold: 0 });
+            io.observe(section);
+
+            // ② #main-content 从 display:none 变为可见时布局
+            let mo = null;
+            if (mainContent) {
+                mo = new MutationObserver(() => layout());
+                mo.observe(mainContent, { attributes: true, attributeFilter: ['style', 'class'] });
+            }
+
+            // ③ 帧轮询兜底（最多约 10 秒），覆盖启动较慢的情况
+            let tries = 0;
+            (function poll() {
+                if (layout() || ++tries > 600) return;
+                requestAnimationFrame(poll);
+            })();
+
+            // 视口宽度跨断点时重建列数并重新平衡
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (isReady()) {
+                        build();
+                        requestAnimationFrame(() => requestAnimationFrame(balance));
+                    }
+                }, 150);
+            });
+        })();
+
         // 预加载所有服装大图，避免切换时延迟
         function preloadOutfitImages() {
             const outfitUrls = [
